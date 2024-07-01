@@ -19,17 +19,17 @@ from typing import Any, Dict, List, Set
 import torch
 import warnings
 
-import detectron2.detectron2.utils.comm as comm
-from detectron2.detectron2.checkpoint import DetectionCheckpointer
-from detectron2.detectron2.config import get_cfg
-from detectron2.detectron2.data import MetadataCatalog, build_detection_train_loader
-from detectron2.detectron2.engine import (
+import detectron2.utils.comm as comm
+from detectron2.checkpoint import DetectionCheckpointer
+from detectron2.config import get_cfg
+from detectron2.data import MetadataCatalog, build_detection_train_loader
+from detectron2.engine import (
     DefaultTrainer,
     default_argument_parser,
     default_setup,
     launch,
 )
-from detectron2.detectron2.evaluation import (
+from detectron2.evaluation import (
     CityscapesSemSegEvaluator,
     COCOPanopticEvaluator,
     DatasetEvaluators,
@@ -46,9 +46,9 @@ from oneformer.evaluation import (
     CityscapesInstanceEvaluator,
 )
 
-from detectron2.detectron2.projects.deeplab import add_deeplab_config, build_lr_scheduler
-from detectron2.detectron2.solver.build import maybe_add_gradient_clipping
-from detectron2.detectron2.utils.logger import setup_logger
+from detectron2.projects.deeplab import add_deeplab_config, build_lr_scheduler
+from detectron2.solver.build import maybe_add_gradient_clipping
+from detectron2.utils.logger import setup_logger
 
 from oneformer import (
     COCOUnifiedNewBaselineDatasetMapper,
@@ -62,7 +62,7 @@ from oneformer import (
     add_convnext_config,
 )
 
-from detectron2.detectron2.utils.events import CommonMetricPrinter, JSONWriter
+from detectron2.utils.events import CommonMetricPrinter, JSONWriter
 from oneformer.utils.events import WandbWriter, setup_wandb
 from time import sleep
 from oneformer.data.build import *
