@@ -17,4 +17,4 @@ pytorch_lightning==1.6.4
 tqdm==4.64.0
 mmcv==1.6.2
 -f https://shi-labs.com/natten/wheels/
-natten==0.17.1+torch210cu121
+natten==0.14.6+torch1101cu113
