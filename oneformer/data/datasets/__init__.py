@@ -6,4 +6,5 @@ from . import (
     register_coco_panoptic2instance,
     register_mapillary_vistas,
     register_mapillary_vistas_panoptic,
+    register_custom_coco_panoptic,
 )
