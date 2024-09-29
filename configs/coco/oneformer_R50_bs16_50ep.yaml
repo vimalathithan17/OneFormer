@@ -48,8 +48,8 @@ MODEL:
     PROJ_NUM_LAYERS: 2
     N_CTX: 16
   TEST:
-    SEMANTIC_ON: True
-    INSTANCE_ON: True
+    SEMANTIC_ON: False
+    INSTANCE_ON: False
     PANOPTIC_ON: True
     DETECTION_ON: False
     OVERLAP_THRESHOLD: 0.8
