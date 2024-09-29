@@ -3,7 +3,8 @@ from detectron2.data import MetadataCatalog
 from detectron2.data.datasets import register_coco_panoptic
 
 
-
+_root = os.getenv("DETECTRON2_DATASETS","datasets")
+BASE_PATH=os.path.join(_root,'coco_city500')
 # Define the paths
 image_root = os.path.join(BASE_PATH, "train2017")
 panoptic_root = os.path.join(BASE_PATH, "panoptic_train2017")
