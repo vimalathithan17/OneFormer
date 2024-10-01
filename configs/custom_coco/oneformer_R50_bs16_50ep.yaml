@@ -51,7 +51,6 @@ MODEL:
     SEMANTIC_ON: False
     INSTANCE_ON: False
     PANOPTIC_ON: True
-    DETECTION_ON: False
     OVERLAP_THRESHOLD: 0.8
     OBJECT_MASK_THRESHOLD: 0.8
     TASK: "panoptic"

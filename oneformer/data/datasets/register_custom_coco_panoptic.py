@@ -38,11 +38,11 @@ COCO_CUSTOM_CATEGORIES = [
 
 COCO_CUSTOM_COLORS = [k["color"] for k in COCO_CUSTOM_CATEGORIES]
 
-MetadataCatalog.get("ade20k_sem_seg_train").set(
+MetadataCatalog.get("custom_coco_sem_seg_train").set(
     stuff_colors=COCO_CUSTOM_COLORS[:],
 )
 
-MetadataCatalog.get("ade20k_sem_seg_val").set(
+MetadataCatalog.get("custom_coco_sem_seg_val").set(
     stuff_colors=COCO_CUSTOM_COLORS[:],
 )
 
@@ -131,7 +131,7 @@ def register_custom_coco_panoptic(
         image_root=image_root,
         panoptic_json=panoptic_json,
         json_file=instances_json,
-        evaluator_type="ade20k_panoptic_seg",
+        evaluator_type="coco_panoptic_seg",
         ignore_label=255,
         label_divisor=1000,
         **metadata,
@@ -143,14 +143,14 @@ _PREDEFINED_SPLITS_CUSTOM_COCO_PANOPTIC = {
         "coco_city500/train2017",
         "coco_city500/panoptic_train2017",
         "coco_city500/annotations/panoptic_train2017.json",
-        None,
+        "coco_city500/panoptic_semseg_train2017",
         "coco_city500/annotations/instances_train2017.json",
     ),
     "coco_city500_val": (
         "coco_city500/val2017",
         "coco_city500/panoptic_val2017",
         "coco_city500/annotations/panoptic_val2017.json",
-        None,
+        "coco_city500/panoptic_semseg_val2017",
         "coco_city500/annotations/instances_val2017.json",
     ),
 }
