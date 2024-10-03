@@ -371,7 +371,7 @@ def load_city_coco31_panoptic_json(json_file, image_dir, gt_dir, semseg_dir, met
         # to make image extension a user-provided argument if we extend this
         # function to support other COCO-like datasets.
         image_file=None
-        file_prefix=os.path.splitext(ann["file_name"])
+        file_prefix=os.path.splitext(ann["file_name"])[0]
         if file_prefix.endswith('_gtFine_panoptic'):
             image_file = os.path.join(image_dir, file_prefix[:len(file_prefix)-len('_gtFine_panoptic')]+'_leftImg8bit' + ".png")
         else:
