@@ -373,25 +373,24 @@ def load_city_coco31_panoptic_json(json_file, image_dir, gt_dir, semseg_dir, met
         image_file=None
         file_prefix=os.path.splitext(ann["file_name"])
         if file_prefix.endswith('_gtFine_panoptic'):
-            image_file = os.path.join(image_dir, os.path.splitext(ann["file_name"])[0] + ".png")
+            image_file = os.path.join(image_dir, file_prefix[:len(file_prefix)-len('_gtFine_panoptic')]+'_leftImg8bit' + ".png")
         else:
             image_file = os.path.join(image_dir, os.path.splitext(ann["file_name"])[0] + ".jpg")
         label_file = os.path.join(gt_dir, ann["file_name"])
-        sem_label_file = os.path.join(semseg_dir, ann["file_name"])
+        #sem_label_file = os.path.join(semseg_dir, ann["file_name"])
         segments_info = [_convert_category_id(x, meta) for x in ann["segments_info"]]
         ret.append(
             {
                 "file_name": image_file,
                 "image_id": image_id,
                 "pan_seg_file_name": label_file,
-                "sem_seg_file_name": sem_label_file,
                 "segments_info": segments_info,
             }
         )
     assert len(ret), f"No images found in {image_dir}!"
     assert PathManager.isfile(ret[0]["file_name"]), ret[0]["file_name"]
     assert PathManager.isfile(ret[0]["pan_seg_file_name"]), ret[0]["pan_seg_file_name"]
-    assert PathManager.isfile(ret[0]["sem_seg_file_name"]), ret[0]["sem_seg_file_name"]
+    #assert PathManager.isfile(ret[0]["sem_seg_file_name"]), ret[0]["sem_seg_file_name"]
     return ret
 
 
@@ -434,16 +433,16 @@ def register_city_coco31_panoptic(
 
 _PREDEFINED_SPLITS_CITY_COCO31_PANOPTIC = {
     "city_coco31_panoptic_train": (
-        "city_coco31panoptic/train",
-        "city_coco31panoptic/panoptic_train",
-        "city_coco31panoptic/annotations/panoptic_train.json",
+        "cityscapes_coco31panoptic/train",
+        "cityscapes_coco31panoptic/panoptic_train",
+        "cityscapes_coco31panoptic/annotations/panoptic_train.json",
         None,
         None,
     ),
     "city_coco31_panoptic_val": (
-        "city_coco31panoptic/val",
-        "city_coco31panoptic/panoptic_val",
-        "city_coco31panoptic/annotations/panoptic_val.json",
+        "cityscapes_coco31panoptic/val",
+        "cityscapes_coco31panoptic/panoptic_val",
+        "cityscapes_coco31panoptic/annotations/panoptic_val.json",
         None,
         None,
     ),
@@ -507,9 +506,9 @@ def register_all_city_coco31_panoptic(root):
             metadata,
             os.path.join(root, image_root),
             os.path.join(root, panoptic_root),
-            os.path.join(root, semantic_root),
+            None,
             os.path.join(root, panoptic_json),
-            os.path.join(root, instance_json),
+            None,
         )
 
 
