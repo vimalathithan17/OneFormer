@@ -7,4 +7,5 @@ from . import (
     register_mapillary_vistas,
     register_mapillary_vistas_panoptic,
     register_custom_coco_panoptic,
+    register_coco_cityscapes31,
 )
