@@ -9,7 +9,11 @@ import os
 from detectron2.data import DatasetCatalog, MetadataCatalog
 from detectron2.utils.file_io import PathManager
 
-COCO_CITYSCAPES_MERGED_CATEGORIES = None
+_root = os.getenv("DETECTRON2_DATASETS", "datasets")
+
+with open(os.path.join(_root,'cityscapes_coco_panoptic_merged/categories.json')) as f:
+    COCO_CITYSCAPES_MERGED_CATEGORIES=json.load(f)
+assert COCO_CITYSCAPES_MERGED_CATEGORIES!=None , "categories can't be None"
 
 COCO_CITYSCAPES_MERGED_COLORS = [k["color"] for k in COCO_CITYSCAPES_MERGED_CATEGORIES]
 
@@ -180,9 +184,6 @@ def get_metadata():
 
 
 def register_all_coco_cityscapes_merged_panoptic(root):
-    with open(os.path.join(root,'cityscapes_coco_panoptic_merged/categories.json')) as f:
-        COCO_CITYSCAPES_MERGED_CATEGORIES=json.load(f)
-    assert COCO_CITYSCAPES_MERGED_CATEGORIES!=None , "categories can't be None"
     metadata = get_metadata()
     for (
         prefix,
@@ -201,5 +202,5 @@ def register_all_coco_cityscapes_merged_panoptic(root):
         )
 
 
-_root = os.getenv("DETECTRON2_DATASETS", "datasets")
+
 register_all_coco_cityscapes_merged_panoptic(_root)
