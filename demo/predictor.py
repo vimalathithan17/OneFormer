@@ -61,14 +61,14 @@ class VisualizationDemo(object):
             panoptic_seg.to(self.cpu_device), segments_info, alpha=0.7
         )
 
-        if task == 'panoptic' or task == 'semantic':
+        if task == 'semantic':
             visualizer = Visualizer(image, metadata=self.metadata, instance_mode=ColorMode.IMAGE_BW)
             predictions = self.predictor(image, task)
             vis_output['semantic_inference'] = visualizer.draw_sem_seg(
                 predictions["sem_seg"].argmax(dim=0).to(self.cpu_device), alpha=0.7
             )
 
-        if task == 'panoptic' or task == 'instance':
+        if task == 'instance':
             visualizer = Visualizer(image, metadata=self.metadata, instance_mode=ColorMode.IMAGE_BW)
             predictions = self.predictor(image, task)
             instances = predictions["instances"].to(self.cpu_device)
